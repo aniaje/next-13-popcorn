@@ -1,5 +1,13 @@
 import Movie from "./movie";
 
+interface IMovie {
+  title: string;
+  original_title: string;
+  release_date: string;
+  poster_path: string;
+  id: string;
+}
+
 export default async function Home() {
   const data = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}`
@@ -12,7 +20,7 @@ export default async function Home() {
         Everybody loves popcorn
       </h1>
       <div className="grid gap-16  grid-cols-fluid">
-        {res.results.map((movie) => (
+        {res.results.map((movie: IMovie) => (
           <Movie
             key={movie.id}
             id={movie.id}
